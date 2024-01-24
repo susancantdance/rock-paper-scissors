@@ -43,7 +43,7 @@ function promptUser(){
     let badAnswer=true;
     let userChoice; 
     while(badAnswer){
-        userChoice = prompt("Enter your choice.","");
+        userChoice = prompt("Enter your choice (rock, paper or scissors).","");
         userChoice = userChoice.toLowerCase();
         badAnswer=false;
         if (userChoice !== "rock" && userChoice !== "paper" && userChoice !== "scissors"){
@@ -111,11 +111,11 @@ function singleRound(computerChoice, userChoice){
         (computerChoice === "scissors" && userChoice === "paper") ||
         (computerChoice === "paper" && userChoice === "rock") ){
 
-            alert(`You Lose! ${computerChoice} beats ${userChoice}!`);
+            alert(`The computer chose ${computerChoice} so you Lose! ${computerChoice} beats ${userChoice}!`);
             return "computer";
         }
         else {
-            alert(`You Win! ${userChoice} beats ${computerChoice}!`);
+            alert(`The computer chose ${computerChoice} so you Win! ${userChoice} beats ${computerChoice}!`);
             return "user";
         }
     }

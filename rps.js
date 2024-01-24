@@ -80,7 +80,7 @@ function game(){
         finalWinner = "you! Congrats!";
     }
 
-    console.log(`The winner is ${finalWinner}`);
+    alert(`The winner is ${finalWinner}`);
 }
 
 

@@ -104,7 +104,7 @@ function getComputerChoice(){
 
 function singleRound(computerChoice, userChoice){
     if (computerChoice === userChoice){
-        alert(`You tied. Try again.`);
+        alert(`Computer also chose ${computerchoice}. You tied. Try again.`);
         return "tie";
     } else if (
         (computerChoice === "rock" && userChoice === "scissors") ||

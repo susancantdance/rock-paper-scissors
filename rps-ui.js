@@ -4,9 +4,7 @@ SINGLE GAME
 
 Randomly pick computer's choice between rock, paper, and scissors
 Store in a computerChoice variable
-Prompt the user to type rock paper scissors
-Store in a userChoice variable
-    Treat as case-insensitive
+Call getUserChoice and store in a userChoice variable
 Compare computerChoice to userChoice
     If computerChoice is Rock and userChoice is Scissors, Computer wins
     If computerChoice is Paper and userChoice is Rock, Computer wins
@@ -23,17 +21,20 @@ Compare computerChoice to userChoice
 
 Return the winner
 
+GET USER CHOICE
+
+loop through nodeList "for each?" and assign a variable to whatever isn't null
 
 
 
-FIVE GAMES
+BEST TILL FIVE GAMES
 
 Create two variables, computerWins and userWins, initialize as 0
 LOOP 
 Play a game
 If computer wins, increment computerWins
 If user wins, increment userWins
-UNTIL Game has been played 5 times */
+UNTIL computer or user = 5 */
 
 //singleRound(getComputerChoice(),promptUser());
 
@@ -41,33 +42,53 @@ const rockButt = document.querySelector('.rock');
 const paperButt = document.querySelector('.paper');
 const scissorButt = document.querySelector('.scissors');
 
+const body = document.querySelector('body');
+const div = document.createElement('div');
+const player = document.createElement('p');
+const playerScore = document.createElement('p');
+const computer = document.createElement('p');
+const computerScore = document.createElement('p');
+const divResults = document.createElement('div');
 
-rockButt.addEventListener('click', () => {singleRound(getComputerChoice(), 'rock');})
+div.textContent = 'First to 5 wins!';
+player.textContent = "Player total" 
+computer.textContent = "Computer total";
+playerScore.textContent = 0;
+computerScore.textContent = 0;
+
+const buttons = document.querySelectorAll('button');
+console.log(buttons);
+
+
+buttons.forEach((button) => {
+        button.addEventListener('click', () => singleRound(getComputerChoice(), button.className))
+});
+
+
+
+
+
+/*rockButt.addEventListener('click', () => {singleRound(getComputerChoice(), 'rock');})
 paperButt.addEventListener('click', () => {singleRound(getComputerChoice(), 'paper');})
-scissorButt.addEventListener('click', () => {singleRound(getComputerChoice(), 'scissors');})
+scissorButt.addEventListener('click', () => {singleRound(getComputerChoice(), 'scissors');})*/
+
+body.appendChild(div);
+div.appendChild(player);
+player.appendChild(playerScore);
+computer.appendChild(computerScore);
+div.appendChild(computer);
+body.appendChild(divResults);
 
 
-/*function promptUser(){
-    let badAnswer=true;
-    let userChoice; 
-    while(badAnswer){
-        userChoice = prompt("Enter your choice (rock, paper or scissors)","");
-        userChoice = userChoice.toLowerCase();
-        badAnswer=false;
-        if (userChoice !== "rock" && userChoice !== "paper" && userChoice !== "scissors"){
-            badAnswer=true;
-            alert("Uhhh, enter rock, paper or scissors plz");
-            console.log("bad answer");
-        }
-    }
-    return userChoice;
-}*/
+
 
 /*function game(){
 
     let computerWins = 0;
     let userWins = 0;
     let finalWinner;
+
+
 
     for(let i=0; i<5; i++){
         let userChoice = promptUser();
@@ -111,21 +132,44 @@ function getComputerChoice(){
 
 function singleRound(computerChoice, userChoice){
     if (computerChoice === userChoice){
-        alert(`Computer also chose ${computerchoice}. You tied. Try again.`);
-        return "tie";
+        divResults.textContent = `Computer also chose ${computerChoice}. You tied. Try again.`;
+        // keepScore('tie');
+       
     } else if (
         (computerChoice === "rock" && userChoice === "scissors") ||
         (computerChoice === "scissors" && userChoice === "paper") ||
         (computerChoice === "paper" && userChoice === "rock") ){
 
-            alert(`The computer chose ${computerChoice} so you Lose! ${computerChoice} beats ${userChoice}!`);
-            return "computer";
+            divResults.textContent = `The computer chose ${computerChoice} so you Lose! ${computerChoice} beats ${userChoice}!`;
+            keepScore('computer');
+           
         }
         else {
-            alert(`The computer chose ${computerChoice} so you Win! ${userChoice} beats ${computerChoice}!`);
-            return "user";
+            divResults.textContent = `The computer chose ${computerChoice} so you Win! ${userChoice} beats ${computerChoice}!`;
+            keepScore('player');
+            
         }
     }
+
+function keepScore(winner){
+   
+    if(winner == 'player'){
+        playerScore.textContent++;
+    } 
+    else if(winner == 'computer'){
+        computerScore.textContent++;
+    }
+
+    if(playerScore.textContent == 5){
+        divResults.textContent = "You won!";
+        divResults.style.fontWeight = 'bold';
+    }
+    else if(computerScore.textContent == 5){
+        divResults.textContent = "Womp womp you lost";
+        divResults.style.fontWeight = 'bold';
+    }
+
+}
 
 
     
